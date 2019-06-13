@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +15,7 @@ public class GameStarter : MonoBehaviour
     private static Text _scoreBoard;
     private Text _timerBoard;
     private float _timer;
+    private float _startTime;
 
     [UsedImplicitly]
     public void StartGame()
@@ -25,6 +25,8 @@ public class GameStarter : MonoBehaviour
         _resultBoard = GameObject.Find("ResultBoard");
         _timerBoard = GameObject.Find("Time").GetComponent<Text>();
         _scoreBoard = GameObject.Find("Scores").GetComponent<Text>();
+        _scoreBoard.text = "0";
+        _startTime = Time.time;
         _startButton.SetActive(false);
         _resultBoard.SetActive(false);
 
@@ -36,11 +38,12 @@ public class GameStarter : MonoBehaviour
         _resultBoard.SetActive(true);
         _startButton.SetActive(true);
         _resultBoard.GetComponent<Text>().text = "You Win!\nTime: " + timerBoardText + " sec";
-        var gameObjects = GameObject.FindObjectsOfType(typeof(Balloon));
-        for (int i = 0; i < gameObjects.Length; i++)
+        var gameObjects = GameObject.FindGameObjectsWithTag("balloon");
+        foreach (GameObject gObj in gameObjects)
         {
-            Destroy(gameObjects[i]);
+            Destroy(gObj);
         }
+
         StopCoroutine(SpawnBalls());
     }
 
@@ -48,7 +51,7 @@ public class GameStarter : MonoBehaviour
     {
         _totalScores = 0;
         _timerBoard.text = "0";
-        _timer = Time.time;
+        _timer = Time.time - _startTime;
         StartCoroutine(SpawnBalls());
     }
 
@@ -60,19 +63,20 @@ public class GameStarter : MonoBehaviour
             int t = (int) (_timer % 60);
             _timerBoard.text = t.ToString();
         }
+
+        if (_maxScores <= _totalScores)
+            ResultBoard(_timerBoard.text);
     }
 
     private IEnumerator SpawnBalls()
     {
-        while (_maxScores > _totalScores)
+        while (_maxScores >= _totalScores)
         {
             yield return new WaitForSeconds(0.5f);
             Vector3 randomPosition = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(-4f, 5f), 0);
             Quaternion randomRotation = transform.rotation * Quaternion.Euler(0, 0, Random.Range(0, 190));
             Instantiate(_balloonPrefab, randomPosition, randomRotation);
         }
-
-        ResultBoard(_timerBoard.text);
     }
 
     public static void SetScore(float scores)
