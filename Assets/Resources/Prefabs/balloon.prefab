@@ -257,13 +257,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreScaler: 10
-  _scaleSpeed: 1.1
+  _scaleSpeedMin: 0.9
+  _scaleSpeedMax: 1.5
   _minScale: {x: 0.05, y: 0.05, z: 1}
   _maxScale: {x: 0.7, y: 0.7, z: 1}
   _colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.82390213, b: 1, a: 1}
+  - {r: 0.4509802, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.2688679, b: 0.9012496, a: 1}
+  - {r: 0.990566, g: 0.988363, b: 0, a: 1}
+  - {r: 1, g: 0.44076967, b: 0, a: 1}
+  - {r: 0.6988884, g: 1, b: 0, a: 1}
+  - {r: 0.495283, g: 1, b: 0.6425262, a: 1}
+  _audioClip: {fileID: 8300000, guid: 4ce75ad9e932efe4aa02dd9dd0b035a2, type: 3}
+  _audioData: {fileID: 2930295107048532296, guid: 001371cb716dc3d49a5622ee49e314aa,
+    type: 3}
 --- !u!50 &3007938978196360064
 Rigidbody2D:
   serializedVersion: 4
