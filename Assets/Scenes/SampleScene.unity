@@ -559,7 +559,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _balloonPrefab: {fileID: 5198510023701789041, guid: 3356b07c3a33783428b482748fa2898f,
     type: 3}
-  _maxScores: 50
+  _maxScores: 100
+  _spawnTimeMin: 0.1
+  _spawnTimeMax: 0.5
 --- !u!1 &830488641
 GameObject:
   m_ObjectHideFlags: 0

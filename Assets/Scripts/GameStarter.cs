@@ -9,6 +9,8 @@ public class GameStarter : MonoBehaviour
 {
     [SerializeField] private GameObject _balloonPrefab;
     [SerializeField] private float _maxScores;
+    [SerializeField] private float _spawnTimeMin;
+    [SerializeField] private float _spawnTimeMax;
     private GameObject _startButton;
     private GameObject _resultBoard;
     private static float _totalScores;
@@ -72,7 +74,7 @@ public class GameStarter : MonoBehaviour
     {
         while (_maxScores >= _totalScores)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(Random.Range(_spawnTimeMin, _spawnTimeMax));
             Vector3 randomPosition = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(-4f, 5f), 0);
             Quaternion randomRotation = transform.rotation * Quaternion.Euler(0, 0, Random.Range(0, 190));
             Instantiate(_balloonPrefab, randomPosition, randomRotation);

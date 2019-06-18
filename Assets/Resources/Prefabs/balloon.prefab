@@ -256,8 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d806799bcd3ca42a3498681db4dc25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chpokParticle: {fileID: 8330426636395147977, guid: 30e87abd3ef380d428ea3e291ff20450,
+    type: 3}
   _scoreScaler: 10
-  _scaleSpeedMin: 0.9
+  _scaleSpeedMin: 0.7
   _scaleSpeedMax: 1.5
   _minScale: {x: 0.05, y: 0.05, z: 1}
   _maxScale: {x: 0.7, y: 0.7, z: 1}

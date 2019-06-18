@@ -2,14 +2,13 @@
 
 public class Balloon : MonoBehaviour
 {
+    [SerializeField] private GameObject _chpokParticle;
     [SerializeField] private float _scoreScaler;
     [SerializeField] private float _scaleSpeedMin;
     [SerializeField] private float _scaleSpeedMax;
     [SerializeField] private Vector3 _minScale;
     [SerializeField] private Vector3 _maxScale;
     [SerializeField] private Color[] _colors;
-    [SerializeField] private AudioClip _audioClip;
-    [SerializeField] private AudioSource _audioData;
 
     void Start()
     {
@@ -28,16 +27,16 @@ public class Balloon : MonoBehaviour
         {
             var scores = -(_scoreScaler * transform.localScale.x);
             GameStarter.SetScore(scores);
+            Instantiate(_chpokParticle, transform.localPosition, transform.localRotation);
             Destroy(gameObject);
         }
     }
 
     private void OnMouseUpAsButton()
     {
-        _audioData.clip = _audioClip;
         var scores = _scoreScaler * transform.localScale.x * _scaleSpeedMax;
         GameStarter.SetScore(scores);
-        _audioData.Play();
+        Instantiate(_chpokParticle, transform.localPosition, transform.localRotation);
         Destroy(gameObject);
     }
 }
